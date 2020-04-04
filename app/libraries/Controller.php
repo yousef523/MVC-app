@@ -9,10 +9,15 @@
 
 
         public function model($model)
-        {
-            require_once '../app/models/' . $model . '.php';
-
-            return new $model(); //new Post();   
+        {            
+            if(file_exists('../app/models/' . $model . '.php'))
+            {
+                require_once '../app/models/' . $model . '.php';
+                return new $model(); //new Post();   
+            }
+            else {
+                die("Model not exists");
+            }
         }
 
         public function view($view, $data = [])
